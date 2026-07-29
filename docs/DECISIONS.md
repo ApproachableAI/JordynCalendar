@@ -96,6 +96,26 @@ gets closer.
 This also fixes a gap in the spec. Pass 7 weights deadlineProximity at 3,
 and nothing stored a deadline, so that term was always reading nothing.
 
+### What a due date does once it passes
+Chosen by Claude, flagged as easy to change once there is a feel for it.
+
+- A past due date never renders. No red, no "overdue", no count of days.
+  While the date is still ahead it shows quietly as "by Friday". The moment
+  it passes, the date stops being displayed at all.
+- The placement score stops climbing at the due date. It sits at the top
+  weighting and stays there rather than escalating every day, so one old
+  task cannot crowd out everything else.
+- The task keeps getting placed, high in the order, until it is done or let
+  go.
+- It appears in the morning catch-up card like anything else that slipped,
+  with Today, This week, and Let it go. Deciding is final and it never asks
+  twice.
+
+The reasoning: the due date is an input to the scheduler, not a badge on the
+task. Its whole job is to pull work earlier. Once it has done that job there
+is nothing useful left to say, and saying it anyway would just be a countdown
+in disguise.
+
 ### Job applications
 Keep the spec as written. 10 a week, maximum 3 in a day.
 
