@@ -80,6 +80,22 @@ things follow:
   and this makes it automatic for anything added later.
 - Region: West US.
 
+### One-off tasks
+Life does not run off templates, so a typed-in task carries its own rules.
+Migration 0002 adds three columns to tasks:
+
+- kind, defaulting to flexible, so the scheduler knows how to place it
+- constraints, the same closed vocabulary templates use
+- due_date, optional
+
+Adding a task asks for a title, a rough duration, and which of the three
+energy types it is. Everything else is optional. A due date is never
+rendered as being late or overdue, it only raises the placement score as it
+gets closer.
+
+This also fixes a gap in the spec. Pass 7 weights deadlineProximity at 3,
+and nothing stored a deadline, so that term was always reading nothing.
+
 ### Job applications
 Keep the spec as written. 10 a week, maximum 3 in a day.
 
