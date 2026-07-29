@@ -52,6 +52,16 @@ Offer the swing when it is not raining, and either:
 When it is gated out, say why. "Swing is out, it is raining."
 This replaces the flat 85F placeholder in SPEC.md section 14 item 3.
 
+### The three energy types
+- chosen
+- upkeep
+- big kid stuff
+
+"Big kid stuff" replaces "obligation", which read as a bill rather than
+something you did. It covers therapy, AA, meetings, and job applications.
+The database enum value is 'big_kid_stuff'. In UI copy it is lower case,
+"big kid stuff", per the sentence case rule.
+
 ### Job applications
 Keep the spec as written. 10 a week, maximum 3 in a day.
 
@@ -81,10 +91,7 @@ typefaces.
 
 ## Open
 
-1. What to call the third energy type. "Obligation" is too heavy. Candidates
-   are commitment, promised, standing, out in the world. Leaning commitment.
-   This is a database enum value, so decide before the first migration.
-2. Solo gym days put her at her desk around 10:05, which eats into the 9:30
+1. Solo gym days put her at her desk around 10:05, which eats into the 9:30
    to 1:00 focus window. Accept it, or shift focused work later on those days.
-3. Pass 7 scoring weights. Still guesses until there are real weeks to tune
+2. Pass 7 scoring weights. Still guesses until there are real weeks to tune
    against. SPEC.md section 14 item 2.
