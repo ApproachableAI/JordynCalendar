@@ -282,6 +282,7 @@ body{
   display:flex;flex-direction:column;justify-content:flex-end;background:var(--hair);
 }
 .app .mcell i{display:block;width:100%}
+.app .mnote{margin:14px 0 0;max-width:52ch;font-size:13px;line-height:1.5;color:var(--soft)}
 .app .mdot{position:absolute;top:4px;left:4px;width:5px;height:5px;border-radius:99px;background:var(--accent)}
 
 @media (max-width:720px){
@@ -424,11 +425,11 @@ function clock(mins){
 }
 
 var TEX = [
- [8,12,5,0],[16,9,7,1],[5,6,3,0],[19,12,8,1],[9,7,0,0],[0,0,0,0],[0,0,0,0],
- [13,10,7,1],[10,8,4,0],[18,11,9,0],[7,9,3,1],[14,8,5,0],[0,0,0,0],[0,0,0,0],
- [11,12,6,1],[17,9,10,1],[6,7,3,0],[12,10,4,0],[15,11,7,1],[0,0,0,0],[0,0,0,0],
- [9,8,5,0],[13,12,8,1],[7,6,3,0],[19,10,6,1],[10,9,4,0],[0,0,0,0],[0,0,0,0],
- [12,10,7,1],[7,7,3,0],[16,12,9,1],[6,8,4,0],[11,9,5,0],[0,0,0,0],[0,0,0,0]
+  [18,8,4,1],[20,9,3,1],[16,10,6,0],[22,8,2,1],[19,9,4,1],[0,0,0,0],[0,0,0,0],
+  [8,10,16,1],[6,9,18,0],[9,11,14,1],[5,8,20,0],[10,10,12,0],[0,0,0,0],[0,0,0,0],
+  [14,9,8,1],[12,10,10,0],[16,8,6,1],[11,11,9,0],[15,9,7,1],[0,0,0,0],[0,0,0,0],
+  [5,9,21,0],[7,10,18,1],[4,8,22,0],[8,9,16,1],[6,10,19,0],[0,0,0,0],[0,0,0,0],
+  [21,8,3,1],[18,9,5,1],[23,7,2,1],[17,10,4,0],[20,8,3,1],[0,0,0,0],[0,0,0,0]
 ];
 
 function build(name){
@@ -540,7 +541,7 @@ function build(name){
       + '<i style="height:'+d[0]+'px;background:'+P.col.ch+'"></i>'
       + '</div>';
   });
-  h += '</div></div>';
+  h += '</div><p class="mnote">Five weeks, and no two the same shape. Week two and week four ran heavy on big kid stuff. Week one and week five were mostly chosen. A dot means both of that day&rsquo;s two landed, which happens on heavy weeks too.</p></div>';
 
   el.innerHTML = h;
   document.getElementById("note").textContent = P.note;

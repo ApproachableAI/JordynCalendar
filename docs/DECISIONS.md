@@ -62,6 +62,24 @@ something you did. It covers therapy, AA, meetings, and job applications.
 The database enum value is 'big_kid_stuff'. In UI copy it is lower case,
 "big kid stuff", per the sentence case rule.
 
+### Weeks vary, and the app should show that
+Some weeks run heavy on big kid stuff and some run mostly chosen. Three
+things follow:
+
+- Protected open time is reserved before anything optional gets placed, so
+  a heavy week eats into optional work rather than into open time.
+- The weekly chosen total still only goes up. On a heavy week it just grows
+  more slowly. Never show a shortfall, a target, or a comparison to last week.
+- The month view is the place the variation is visible. A heavy week reads as
+  a thick band of big kid stuff, a light week reads mostly chosen.
+
+### Supabase project settings
+- Enable Data API: on. supabase-js needs it.
+- Automatically expose new tables: on.
+- Enable automatic RLS: on. Every table gets RLS in the migration anyway,
+  and this makes it automatic for anything added later.
+- Region: West US.
+
 ### Job applications
 Keep the spec as written. 10 a week, maximum 3 in a day.
 
