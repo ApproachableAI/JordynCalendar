@@ -306,10 +306,10 @@ body{
     <p class="eyebrow">Calendar app &middot; Daylight, revised</p>
     <h1>Daylight, with the purple taken out and the day put back in.</h1>
     <p>Same idea as before: the grid is lit by the hour, scheduled work is a silhouette cut into the light, and open time is just where nothing is blocking the sun. The type is now Ballast's, so <strong>Bricolage Grotesque</strong> carries the numbers and <strong>Newsreader</strong> carries the task names.</p>
-    <p>The light follows a real July day in Denver. Sunrise a little before six, the flat bright middle, low sun through leaves from about five, sunset around eight twenty, then green dusk. Three grounds to choose from. Pick one and the whole day re-lights.</p>
+    <p>The light follows a real July day in Denver. Sunrise a little before six, the flat bright middle, low sun through leaves from about five, sunset around eight twenty, then green dusk. Shoreline is the chosen ground. The other two are still here to compare against.</p>
 
     <div class="picker" role="group" aria-label="Choose a palette">
-      <button type="button" data-p="meadow" aria-pressed="true">
+      <button type="button" data-p="meadow" aria-pressed="false">
         <span class="dots"><i style="background:#0E1A14"></i><i style="background:#F0B860"></i><i style="background:#8FBF74"></i></span>
         Meadow
       </button>
@@ -317,7 +317,7 @@ body{
         <span class="dots"><i style="background:#171310"></i><i style="background:#E8A253"></i><i style="background:#C9714A"></i></span>
         Canyon
       </button>
-      <button type="button" data-p="shoreline" aria-pressed="false">
+      <button type="button" data-p="shoreline" aria-pressed="true">
         <span class="dots"><i style="background:#0B1F23"></i><i style="background:#EFC474"></i><i style="background:#79B5A8"></i></span>
         Shoreline
       </button>
@@ -555,5 +555,5 @@ document.querySelectorAll(".picker button").forEach(function(b){
   });
 });
 
-build("meadow");
+build("shoreline");
 </script>

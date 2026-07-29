@@ -52,6 +52,9 @@ Offer the swing when it is not raining, and either:
 When it is gated out, say why. "Swing is out, it is raining."
 This replaces the flat 85F placeholder in SPEC.md section 14 item 3.
 
+### Job applications
+Keep the spec as written. 10 a week, maximum 3 in a day.
+
 ### Reorganizing
 Stays tagged as chosen. Report how much of the weekly chosen total is
 reorganizing so the tag can be revisited with real data.
@@ -64,7 +67,11 @@ needs Twilio at roughly $1.50 a month plus a scheduled job on the server
 side, so it is not a phase 5 item.
 
 ### Visual direction
-Daylight, in natural colours, using the Ballast typefaces.
+Daylight, in natural colours, on the Shoreline ground, using the Ballast
+typefaces.
+- Ground: Shoreline. Deep water ground, cool blue dawn, pale sand at noon,
+  warm low sun, teal night. Chosen partly for legibility, since the pale
+  midday gives the strongest contrast for text sitting on the light.
 - Bricolage Grotesque for every number and label
 - Newsreader for task names and body text
 - No purple anywhere
@@ -74,15 +81,10 @@ Daylight, in natural colours, using the Ballast typefaces.
 
 ## Open
 
-1. Which ground: Meadow or Shoreline. Canyon is out. The ground is a single
-   set of tokens, so this can be switched later without touching layout.
-2. What to call the third energy type. "Obligation" is too heavy. Candidates
+1. What to call the third energy type. "Obligation" is too heavy. Candidates
    are commitment, promised, standing, out in the world. Leaning commitment.
    This is a database enum value, so decide before the first migration.
-3. Job applications are capped at 3 a day in SPEC.md, but she described doing
-   4 one day and 6 another. Raise the cap, or drop the daily cap and track
-   only the weekly 10.
-4. Solo gym days put her at her desk around 10:05, which eats into the 9:30
+2. Solo gym days put her at her desk around 10:05, which eats into the 9:30
    to 1:00 focus window. Accept it, or shift focused work later on those days.
-5. Pass 7 scoring weights. Still guesses until there are real weeks to tune
+3. Pass 7 scoring weights. Still guesses until there are real weeks to tune
    against. SPEC.md section 14 item 2.
