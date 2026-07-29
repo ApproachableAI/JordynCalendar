@@ -9,11 +9,12 @@ with u as (select id from auth.users order by created_at limit 1),
      checks as (
 
   select 1 as n, 'Coffee with Ty anchors the morning' as rule,
-         'anchor, window 07:30 to 08:30' as expected,
+         'anchor, window 06:45 to 08:00, 75 min' as expected,
          exists (select 1 from t where title = 'Coffee with Ty'
                  and kind = 'anchor'
-                 and constraints->>'windowStart' = '07:30'
-                 and constraints->>'windowEnd'   = '08:30') as pass
+                 and default_minutes = 75
+                 and constraints->>'windowStart' = '06:45'
+                 and constraints->>'windowEnd'   = '08:00') as pass
 
   union all select 2, 'Shower and breakfast after movement',
          'shower after movement, breakfast after shower, 35 min',

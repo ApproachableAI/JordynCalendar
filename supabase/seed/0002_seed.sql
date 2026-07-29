@@ -111,8 +111,9 @@ begin
                          quota_count, quota_period, quota_max_per_day, constraints) values
 
     -- anchors and daily upkeep
-    (uid, 'Coffee with Ty', 'anchor', 'anchor', 'upkeep', 1, 30, null, false,
-     null, null, null, '{"windowStart":"07:30","windowEnd":"08:30","immovable":true}'::jsonb),
+    -- Ty leaves around eight, so this runs from quarter to seven until then.
+    (uid, 'Coffee with Ty', 'anchor', 'anchor', 'upkeep', 1, 75, null, false,
+     null, null, null, '{"windowStart":"06:45","windowEnd":"08:00","immovable":true}'::jsonb),
     (uid, 'Meds', 'upkeep', 'daily', 'upkeep', 1, 5, null, false,
      null, null, null, '{"deferrable":false}'::jsonb),
     (uid, 'Water', 'upkeep', 'daily', 'upkeep', 1, 5, null, false,
