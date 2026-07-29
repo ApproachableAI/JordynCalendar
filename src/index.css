@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens, Daylight on the Shoreline ground.
+   See design/daylight.html and docs/DECISIONS.md.
+   --------------------------------------------------------------------------- */
+@theme {
+  /* ground and surfaces */
+  --color-ground: #0B1F23;
+  --color-panel: #122C30;
+  --color-hairline: rgba(239, 196, 116, 0.15);
+
+  /* text */
+  --color-ink: #E7EFEA;
+  --color-soft: #8AA5A2;
+
+  /* accents. Gold carries open time and today's two. */
+  --color-sun: #EFC474;
+  --color-tide: #79B5A8;
+
+  /* the three energy types */
+  --color-chosen: #79B5A8;
+  --color-upkeep: #4E7376;
+  --color-bigkid: #EFC474;
+
+  /* silhouettes, the blocks cut into the light */
+  --color-silhouette: rgba(11, 31, 35, 0.86);
+  --color-silhouette-deep: rgba(6, 20, 23, 0.93);
+
+  /* text sitting on the lit part of the grid */
+  --color-onlight: #2E2410;
+  --color-onlight-soft: #3A2F14;
+
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Newsreader", Georgia, serif;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Keyboard users must always be able to see where they are. */
+:focus-visible {
+  outline: 2.5px solid var(--color-sun);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
