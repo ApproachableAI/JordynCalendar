@@ -6,6 +6,7 @@ import { supabase } from './lib/supabase'
 import { SignIn } from './SignIn'
 import { DayView } from './views/DayView'
 import { WeekView } from './views/WeekView'
+import { BrainDump } from './views/BrainDump'
 
 const ZONE = 'America/Denver'
 
@@ -22,7 +23,7 @@ function minutesNowInZone(): number {
 export default function App() {
   const [session, setSession] = useState<Session | null>(null)
   const [checking, setChecking] = useState(true)
-  const [view, setView] = useState<'day' | 'week'>('day')
+  const [view, setView] = useState<'day' | 'week' | 'list'>('day')
   const [date, setDate] = useState(todayInZone)
   const [now, setNow] = useState(minutesNowInZone)
 
@@ -80,7 +81,7 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-1.5">
-          {(['day', 'week'] as const).map((v) => (
+          {(['day', 'week', 'list'] as const).map((v) => (
             <button
               key={v}
               type="button"
@@ -105,9 +106,8 @@ export default function App() {
         </div>
       </nav>
 
-      {view === 'day' ? (
-        <DayView date={date} nowMinute={isToday ? now : null} />
-      ) : (
+      {view === 'day' && <DayView date={date} nowMinute={isToday ? now : null} />}
+      {view === 'week' && (
         <WeekView
           date={date}
           onPickDay={(d) => {
@@ -116,6 +116,7 @@ export default function App() {
           }}
         />
       )}
+      {view === 'list' && <BrainDump today={todayInZone()} />}
     </div>
   )
 }

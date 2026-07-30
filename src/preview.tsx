@@ -1,4 +1,6 @@
 import { createRoot } from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { TaskSheet } from './components/TaskSheet'
 import './index.css'
 import { DayGrid } from './components/DayGrid'
 import { OpenHeader } from './components/OpenHeader'
@@ -42,7 +44,10 @@ const windows: ProtectedWindow[] = [
 const WAKE = 330, SLEEP = 1350
 const spans = openSpans(tasks, WAKE, SLEEP, windows)
 
+const qc = new QueryClient()
+
 createRoot(document.getElementById('root')!).render(
+  <QueryClientProvider client={qc}>
   <div className="mx-auto max-w-3xl px-8 py-8">
     <OpenHeader openMinutes={totalOpenMinutes(spans)} balance={balance(tasks)}
                 dayMinutes={SLEEP - WAKE} chosenThisWeek={675} />
@@ -51,5 +56,7 @@ createRoot(document.getElementById('root')!).render(
       <DayGrid tasks={tasks} wakeMinute={WAKE} sleepMinute={SLEEP}
                protectedWindows={windows} nowMinute={1000} />
     </div>
-  </div>,
+    <TaskSheet task={{ ...tasks[4], counts_today: true }} onClose={() => {}} />
+  </div>
+  </QueryClientProvider>,
 )

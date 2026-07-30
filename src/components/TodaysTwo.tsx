@@ -14,8 +14,8 @@ export function TodaysTwo({ two }: { two: Task[] }) {
           Today&rsquo;s two
         </p>
         <p className="mt-1 text-soft">
-          Pick one or two things that would make today a good day. Tap any task
-          to mark it.
+          Pick one or two things that would make today a good day. Tap a block
+          on the grid, then choose &ldquo;make this one of today&rsquo;s two&rdquo;.
         </p>
       </div>
     )

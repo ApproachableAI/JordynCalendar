@@ -46,11 +46,28 @@ export function useTasks(from: string, to: string) {
   })
 }
 
+/** The brain dump. Anything thought of but not committed to a day. */
+export function useInbox() {
+  return useQuery({
+    queryKey: ['inbox'],
+    queryFn: async (): Promise<Task[]> => {
+      const { data, error } = await supabase
+        .from('tasks')
+        .select('*')
+        .is('scheduled_date', null)
+        .eq('status', 'planned')
+        .order('created_at')
+      if (error) throw error
+      return data
+    },
+  })
+}
+
 export type NewTask = {
   title: string
   energy: Energy
   duration_minutes: number
-  scheduled_date: string
+  scheduled_date: string | null
   start_minute: number | null
   due_date: string | null
   kind?: TaskKind
@@ -72,7 +89,39 @@ export function useAddTask() {
       })
       if (error) throw error
     },
-    onSuccess: () => client.invalidateQueries({ queryKey: ['tasks'] }),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['tasks'] })
+      client.invalidateQueries({ queryKey: ['inbox'] })
+    },
+  })
+}
+
+/** Editing an existing task. Only the fields passed get touched. */
+export function useUpdateTask() {
+  const client = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ id, ...patch }: Partial<Task> & { id: string }) => {
+      const { error } = await supabase.from('tasks').update(patch).eq('id', id)
+      if (error) throw error
+    },
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['tasks'] })
+      client.invalidateQueries({ queryKey: ['inbox'] })
+    },
+  })
+}
+
+export function useDeleteTask() {
+  const client = useQueryClient()
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from('tasks').delete().eq('id', id)
+      if (error) throw error
+    },
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['tasks'] })
+      client.invalidateQueries({ queryKey: ['inbox'] })
+    },
   })
 }
 

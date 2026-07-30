@@ -41,7 +41,7 @@ export function AddTask({ date }: { date: string }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="mt-6 w-full rounded-xl border border-dashed border-hairline py-3
+        className="mt-7 w-full rounded-xl border border-dashed border-hairline py-3
                    font-display text-sm text-soft hover:border-sun hover:text-sun"
       >
         Add something
@@ -50,7 +50,7 @@ export function AddTask({ date }: { date: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6 rounded-xl border border-hairline bg-panel p-4">
+    <form onSubmit={handleSubmit} className="mt-7 rounded-xl border border-hairline bg-panel p-4">
       <label htmlFor="title" className="font-display text-[10px] font-bold uppercase tracking-[0.16em] text-soft">
         What is it
       </label>
