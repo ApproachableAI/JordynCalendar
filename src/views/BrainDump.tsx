@@ -22,7 +22,7 @@ const DURATIONS = [15, 30, 45, 60, 90]
  * which point it drops into the earliest gap that fits and never into
  * protected time.
  */
-export function BrainDump({ today }: { today: string }) {
+export function BrainDumpList({ today }: { today: string }) {
   const inbox = useInbox()
   const profile = useProfile()
   const windows = useProtectedWindows()
@@ -104,7 +104,7 @@ export function BrainDump({ today }: { today: string }) {
   }
 
   if (profile.isLoading || inbox.isLoading) {
-    return <p className="p-8 text-soft">Loading your list.</p>
+    return <p className="p-5 text-soft">Loading your list.</p>
   }
 
   const items = inbox.data ?? []
@@ -114,15 +114,15 @@ export function BrainDump({ today }: { today: string }) {
     }`
 
   return (
-    <div className="mx-auto max-w-2xl px-5 pb-24 pt-8 sm:px-8">
-      <h1 className="font-display text-4xl leading-none tracking-tight text-sun">
+    <div className="p-5">
+      <h2 className="font-display text-xl leading-tight tracking-tight text-sun">
         Everything on your mind
-      </h1>
-      <p className="mt-3 text-soft">
-        Put it all down here. Nothing gets a time until you send it to a day.
+      </h2>
+      <p className="mt-1.5 text-sm text-soft">
+        Nothing here has a time until you send it to a day.
       </p>
 
-      <form onSubmit={handleAdd} className="mt-6">
+      <form onSubmit={handleAdd} className="mt-4">
         <label htmlFor="dump" className="sr-only">
           Things to do
         </label>
@@ -135,13 +135,13 @@ export function BrainDump({ today }: { today: string }) {
             if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) handleAdd(e)
           }}
           placeholder={'Call the vet\nRenew the car registration\nReply to Mum'}
-          className="w-full rounded-xl border border-hairline bg-panel px-4 py-3 text-ink placeholder:text-soft/60"
+          className="w-full rounded-xl border border-hairline bg-ground px-3 py-2.5 text-sm text-ink placeholder:text-soft/60"
         />
-        <div className="mt-2 flex items-center gap-3">
+        <div className="mt-2 flex flex-wrap items-center gap-2">
           <button
             type="submit"
             disabled={add.isPending || !text.trim()}
-            className="rounded-full bg-sun px-5 py-2.5 font-display text-sm font-semibold text-ground disabled:opacity-50"
+            className="rounded-full bg-sun px-4 py-2 font-display text-xs font-semibold text-ground disabled:opacity-50"
           >
             {add.isPending ? 'Adding' : 'Add these'}
           </button>
@@ -150,32 +150,34 @@ export function BrainDump({ today }: { today: string }) {
       </form>
 
       {note && (
-        <p role="status" className="mt-5 rounded-xl border border-sun/40 bg-sun/10 p-3 text-sm text-ink">
+        <p role="status" className="mt-4 rounded-xl border border-sun/40 bg-sun/10 p-2.5 text-xs text-ink">
           {note}
         </p>
       )}
 
-      <div className="mt-8 flex flex-col gap-2">
+      <div className="mt-5 flex flex-col gap-2">
         {items.length === 0 && (
-          <p className="rounded-xl border border-dashed border-hairline p-5 text-soft">
-            Nothing waiting. Anything you type above lands here until you decide
-            when to do it.
+          <p className="rounded-xl border border-dashed border-hairline p-4 text-sm text-soft">
+            Nothing waiting. Anything you type above lands here until you
+            decide when to do it.
           </p>
         )}
 
         {items.map((item) => (
-          <div key={item.id} className="rounded-xl border border-hairline bg-panel p-3">
-            <div className="flex flex-wrap items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setExpanded(expanded === item.id ? null : item.id)}
-                className="min-w-0 grow text-left text-ink"
-              >
-                <span className="block truncate">{item.title}</span>
-                <span className="mt-0.5 block font-display text-[10px] uppercase tracking-[0.12em] text-soft">
-                  {formatDuration(item.duration_minutes)} &middot; {ENERGY_LABEL[item.energy]}
-                </span>
-              </button>
+          <div key={item.id} className="rounded-xl border border-hairline bg-ground p-2.5">
+            {/* Title first, buttons under it, so a long name does not shuffle
+                the controls onto a different line than a short one. */}
+            <button
+              type="button"
+              onClick={() => setExpanded(expanded === item.id ? null : item.id)}
+              className="block w-full text-left text-ink"
+            >
+              <span className="block text-sm leading-snug">{item.title}</span>
+              <span className="mt-0.5 block font-display text-[10px] uppercase tracking-[0.12em] text-soft">
+                {formatDuration(item.duration_minutes)} &middot; {ENERGY_LABEL[item.energy]}
+              </span>
+            </button>
+            <div className="mt-2 flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => sendTo(item, today)}

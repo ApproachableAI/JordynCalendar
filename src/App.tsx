@@ -6,7 +6,7 @@ import { supabase } from './lib/supabase'
 import { SignIn } from './SignIn'
 import { DayView } from './views/DayView'
 import { WeekView } from './views/WeekView'
-import { BrainDump } from './views/BrainDump'
+import { ListPanel, ListToggle } from './components/ListPanel'
 
 const ZONE = 'America/Denver'
 
@@ -23,7 +23,7 @@ function minutesNowInZone(): number {
 export default function App() {
   const [session, setSession] = useState<Session | null>(null)
   const [checking, setChecking] = useState(true)
-  const [view, setView] = useState<'day' | 'week' | 'list'>('day')
+  const [view, setView] = useState<'day' | 'week'>('day')
   const [date, setDate] = useState(todayInZone)
   const [now, setNow] = useState(minutesNowInZone)
 
@@ -81,7 +81,7 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-1.5">
-          {(['day', 'week', 'list'] as const).map((v) => (
+          {(['day', 'week'] as const).map((v) => (
             <button
               key={v}
               type="button"
@@ -96,6 +96,7 @@ export default function App() {
               {v}
             </button>
           ))}
+          <ListToggle />
           <button
             type="button"
             onClick={() => supabase.auth.signOut()}
@@ -106,17 +107,21 @@ export default function App() {
         </div>
       </nav>
 
-      {view === 'day' && <DayView date={date} nowMinute={isToday ? now : null} />}
-      {view === 'week' && (
-        <WeekView
-          date={date}
-          onPickDay={(d) => {
-            setDate(d)
-            setView('day')
-          }}
-        />
-      )}
-      {view === 'list' && <BrainDump today={todayInZone()} />}
+      <div className="flex items-start">
+        <main className="min-w-0 grow">
+          {view === 'day' && <DayView date={date} nowMinute={isToday ? now : null} />}
+          {view === 'week' && (
+            <WeekView
+              date={date}
+              onPickDay={(d) => {
+                setDate(d)
+                setView('day')
+              }}
+            />
+          )}
+        </main>
+        <ListPanel today={todayInZone()} />
+      </div>
     </div>
   )
 }
